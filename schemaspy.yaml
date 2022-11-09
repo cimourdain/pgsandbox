@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  schemaspy:
+    container_name: "pgsandbox_schemaspy_local"
+    image: schemaspy/schemaspy:snapshot
+    volumes:
+      - ./schemaspy/output:/output
+      - ./schemaspy/config:/config
+    command: [
+      "-configFile",
+      "/config/schemaspy.properties",
+      "-imageformat",
+      "svg"
+    ]
+    networks:
+      - pgsandbox-postgres
+
+
+networks:
+  pgsandbox-postgres:
